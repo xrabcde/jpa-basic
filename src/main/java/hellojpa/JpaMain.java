@@ -16,25 +16,29 @@ public class JpaMain {
 
         //code
         try {
-            Member member = new Member();
-            member.setId(1L);
-            member.setName("HelloA");
+            //팀 저장
+            Team team = new Team();
+            team.setName("teamA");
+            em.persist(team);
 
             //회원 등록
+            Member member = new Member();
+            member.setName("HelloA");
+            member.setTeamId(team.getId());
+
             em.persist(member);
 
-            Member member2 = new Member();
-            member2.setId(2L);
-            member2.setName("HelloB");
-
-            em.persist(member2);
+//            Member member2 = new Member();
+//            member2.setName("HelloB");
+//
+//            em.persist(member2);
 
             //회원 조회
             final Member findMember = em.find(Member.class, 2L);
             final List<Member> findMembers = em.createQuery("select m from Member as m", Member.class).getResultList();
 
             //회원 삭제
-            em.remove(findMember);
+//            em.remove(findMember);
 
             //회원 수정
             findMember.setName("HelloJPA"); //persist() 안 해줘도 됨
