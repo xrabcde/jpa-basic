@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.Arrays;
 import java.util.List;
 
 public class JpaMain {
@@ -39,6 +40,7 @@ public class JpaMain {
 
             //팀 조회
             Team findTeam = findMember.getTeam();
+            final List<Member> members = findTeam.getMembers();
 
             //회원 삭제
 //            em.remove(findMember);
